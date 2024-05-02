@@ -7,7 +7,6 @@ odoo.define("password_security.policy", function (require) {
     var _t = core._t;
     var auth_password_policy = require("auth_password_policy");
     var Policy = auth_password_policy.Policy;
-    var zxcvbn = window.zxcvbn;
 
     Policy.include({
         /**
@@ -98,7 +97,7 @@ odoo.define("password_security.policy", function (require) {
         },
 
         _estimate: function (password) {
-            return Math.min(zxcvbn(password).score / 4.0, 1.0);
+            return Math.min(window.zxcvbn(password).score / 4.0, 1.0);
         },
 
         score: function (password) {
